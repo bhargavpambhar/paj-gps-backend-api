@@ -18,7 +18,7 @@ return [
     |
     */
 
-    'default' => env('LOG_CHANNEL', 'stack'),
+    'default' => env('LOG_CHANNEL', 'daily_custom'),
 
     /*
     |--------------------------------------------------------------------------
@@ -71,6 +71,13 @@ return [
             'level' => env('LOG_LEVEL', 'debug'),
             'days' => env('LOG_DAILY_DAYS', 14),
             'replace_placeholders' => true,
+        ],
+
+        'daily_custom' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/laravel-' . date('Y-m-d') . '.log'),  // Log file name includes current date
+            'level' => 'info',  // Adjust the log level as needed
+            'days' => 7,  // Number of days to retain logs
         ],
 
         'slack' => [
